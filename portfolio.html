@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aryan Singh — AI Creative Technologist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --surface: #111111;
+      --card: #161616;
+      --border: #222222;
+      --blue: #3B82F6;
+      --blue-dim: rgba(59,130,246,0.15);
+      --gold: #F59E0B;
+      --gold-dim: rgba(245,158,11,0.12);
+      --white: #F5F5F5;
+      --muted: #888888;
+      --display: 'Space Grotesk', sans-serif;
+      --body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 60px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 140px 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 32px; height: 1px;
+      background: var(--blue);
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      max-width: 900px;
+    }
+    .hero-title .accent { color: var(--blue); }
+    .hero-title .gold { color: var(--gold); }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 52px;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--blue);
+      color: white;
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #2563EB; transform: translateY(-1px); }
+    .btn-ghost {
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--muted); transform: translateY(-1px); }
+
+    .hero-stats {
+      margin-top: 80px;
+      display: flex; gap: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: var(--display);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .stat-num span { color: var(--blue); }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* SECTION COMMON */
+    section { padding: 100px 60px; }
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-eyebrow::before {
+      content: ''; display: block;
+      width: 24px; height: 1px; background: var(--blue);
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 60px;
+      max-width: 600px;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2px;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.3s;
+      cursor: default;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--blue-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .project-card:hover { border-color: rgba(59,130,246,0.4); }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card.gold-card::before {
+      background: linear-gradient(135deg, var(--gold-dim), transparent);
+    }
+    .project-card.gold-card:hover { border-color: rgba(245,158,11,0.4); }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #0D0D0D;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-frame video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .video-frame iframe {
+      width: 100%; height: 100%; border: none;
+    }
+    .video-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #0D0D0D 0%, #111 100%);
+    }
+    .play-icon {
+      width: 52px; height: 52px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .project-card:hover .play-icon {
+      border-color: var(--blue);
+      background: var(--blue-dim);
+    }
+    .play-icon svg { margin-left: 3px; }
+    .video-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .project-body {
+      padding: 28px 28px 32px;
+      position: relative; z-index: 1;
+    }
+    .project-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-dim);
+      padding: 4px 10px;
+      margin-bottom: 14px;
+    }
+    .gold-card .project-tag {
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .project-title {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .project-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .project-meta {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .meta-row {
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .meta-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 64px;
+      padding-top: 2px;
+    }
+    .meta-value {
+      font-size: 13px;
+      color: #AAAAAA;
+      line-height: 1.5;
+    }
+    .tool-chips {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .chip {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      color: #AAAAAA;
+      letter-spacing: 0.04em;
+    }
+
+    /* WORKFLOW */
+    .workflow-section { background: var(--surface); }
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .workflow-step {
+      background: var(--card);
+      padding: 36px 28px;
+      position: relative;
+    }
+    .step-num {
+      font-family: var(--display);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -0.04em;
+    }
+    .step-title {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .step-arrow {
+      position: absolute;
+      right: -12px; top: 50%;
+      transform: translateY(-50%);
+      width: 24px; height: 24px;
+      background: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+      font-size: 12px;
+    }
+
+    /* TOOLS */
+    .tools-section { padding: 80px 60px; }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .tool-item {
+      background: var(--card);
+      padding: 24px 20px;
+      transition: background 0.2s;
+    }
+    .tool-item:hover { background: #1A1A1A; }
+    .tool-category {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .tool-name {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--surface);
+      padding: 100px 60px;
+      text-align: center;
+    }
+    .contact-title {
+      font-family: var(--display);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .contact-title .blue { color: var(--blue); }
+    .contact-sub {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+    .contact-links {
+      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--blue); color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 60px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 24px 60px; }
+      section { padding: 60px 24px; }
+      .hero-stats { gap: 32px; flex-wrap: wrap; }
+      .tools-section { padding: 60px 24px; }
+      .contact-section { padding: 60px 24px; }
+      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Aryan<span>.</span></div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#workflow">Process</a>
+    <a href="#tools">Tools</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">AI Creative Technologist</div>
+  <h1 class="hero-title">
+    I build<br/>
+    <span class="accent">AI-generated</span><br/>
+    video at scale.
+  </h1>
+  <p class="hero-sub">
+    End-to-end AI video production — from prompt engineering and scene composition to multi-tool pipelines and publish-ready brand content. I Have only till dates used free open source tools and can make even better projects provided that i am given better tools and time to work with.
+  </p>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">2<span>+</span></div>
+      <div class="stat-label">AI Video Projects</div>
+    </div>
+    <div>
+      <div class="stat-num">8<span>+</span></div>
+      <div class="stat-label">AI Tools Mastered</div>
+    </div>
+    <div>
+      <div class="stat-num">2<span>hr</span></div>
+      <div class="stat-label">Avg. Turnaround Per Clip</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" style="padding: 100px 60px;">
+  <div class="section-eyebrow">Selected Work</div>
+  <h2 class="section-title">AI-generated content, built end-to-end.</h2>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card">
+      <div class="video-frame">
+        <iframe src="https://drive.google.com/file/d/1K9F259OKk-EghsDenDWmPWxM8Kyx-1zT/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Brand Film</div>
+        <h3 class="project-title">Nike × Eiffel Tower — "Just Do It."</h3>
+        <p class="project-desc">
+          A brand film featuring nike's collaboration with fifa world cup teams emphasising France, transitioning through a France tricolour flag reveal to a clean Nike end card. Built entirely with AI tools - no camera crew, no studio.
+        </p>
+        <div class="project-meta">
+          <div class="meta-row">
+            <div class="meta-label">Brief</div>
+            <div class="meta-value">Sportswear brand + Paris landmark + national pride</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Workflow</div>
+            <div class="meta-value">Prompt → Video generation → Scene stitching → Brand end card</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Tools</div>
+            <div class="tool-chips">
+              <span class="chip">Google Flow / Veo 3</span>
+              <span class="chip">DaVinci Resolve</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card gold-card">
+      <div class="video-frame">
+        <iframe src="https://drive.google.com/file/d/1Sz9r37MYZQk1s0i2Cvm5IkUwbIyFzyNW/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Motion Graphics</div>
+        <h3 class="project-title">Advanced AI Video Generation — Tech Showcase</h3>
+        <p class="project-desc">
+          A fast-paced cinematic sequence showcasing my multiple video generation experiment over my course of experience, each video is generated using ai and stiched using DaVinci Resolve.
+        </p>
+        <div class="project-meta">
+          <div class="meta-row">
+            <div class="meta-label">Brief</div>
+            <div class="meta-value">Showcase AI video production capability in one punchy clip</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Workflow</div>
+            <div class="meta-value">Multi-scene prompt engineering → fast-cut generation → caption overlay</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Tools</div>
+            <div class="tool-chips">
+              <span class="chip">Google Flow / Veo 3</span>
+              <span class="chip">DaVinci Resolve</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section id="workflow" class="workflow-section">
+  <div class="section-eyebrow">Process</div>
+  <h2 class="section-title">How I go from brief to publish-ready in hours.</h2>
+  <div class="workflow-steps">
+    <div class="workflow-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Brief → Narrative</div>
+      <div class="step-desc">Translate the creative brief into a structured visual story — hook, scene flow, emotional payoff, brand moment.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Prompt Engineering</div>
+      <div class="step-desc">Build structured multi-step prompts with locked style, lighting, camera, and character parameters for consistent output.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Generate & Iterate</div>
+      <div class="step-desc">Run generations across tools — refine prompts based on output, troubleshoot inconsistencies, select best takes.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Post-Production</div>
+      <div class="step-desc">Stitch scenes, add transitions, text overlays, audio sync, color grading — platform-ready output delivered.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="tools-section">
+  <div class="section-eyebrow">Tool Ecosystem</div>
+  <h2 class="section-title">Tools I use in production.</h2>
+  <div class="tools-grid">
+    <div class="tool-item"><div class="tool-category">Video Gen</div><div class="tool-name">Google Flow / Veo 3</div></div>
+    <div class="tool-item"><div class="tool-category">Video Gen</div><div class="tool-name">Seedance 2.0</div></div>
+    <div class="tool-item"><div class="tool-category">Editing</div><div class="tool-name">DaVinci Resolve</div></div>
+    <div class="tool-item"><div class="tool-category">Image Gen</div><div class="tool-name">Nano Banana</div></div>
+    <div class="tool-item"><div class="tool-category">Image Gen</div><div class="tool-name">Midjourney</div></div>
+    <div class="tool-item"><div class="tool-category">Scripting</div><div class="tool-name">Claude / ChatGPT / Gemini</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <h2 class="contact-title">Let's build something<br/><span class="blue">extraordinary.</span></h2>
+  <p class="contact-sub">Open to full-time roles in AI video production and creative technology.</p>
+  <div class="contact-links">
+    <a href="mailto:aryanrajesh2019@gmail.com" class="contact-item">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+      aryanrajesh2019@gmail.com
+    </a>
+    <a href="tel:+918928359205" class="contact-item">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 6.75z"/></svg>
+      +91 89283 59205
+    </a>
+    <a href="#work" class="contact-item">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+      Mumbai, India
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Aryan Singh — AI Creative Technologist</p>
+  <p>Built to showcase AI video production capability</p>
+</footer>
+
+</body>
+</html>
